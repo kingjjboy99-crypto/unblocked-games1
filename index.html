@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Notes - Unblocked Games Hub</title>
+<style>
+body {background:#121212; color:white; font-family:sans-serif; margin:0; padding:0;}
+header {background:#1f1f1f; padding:15px; text-align:center;}
+h1 {margin:0; font-size:32px;}
+nav {display:flex; justify-content:center; flex-wrap:wrap; margin:10px 0;}
+nav button {margin:5px; padding:10px 15px; font-size:16px; cursor:pointer; border:none; background:#333; color:white; border-radius:5px;}
+#game-container {margin:20px auto; width:90%; text-align:center;}
+iframe {width:800px; height:500px; border:none; max-width:100%;}
+button.game-btn {display:block; margin:10px auto; padding:10px 20px; font-size:18px; border-radius:5px; cursor:pointer; background:#444; color:white; border:none;}
+.custom-game {margin-top:20px;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Notes - Unblocked Games Hub</h1>
+</header>
+
+<nav>
+<button onclick="loadCategory('2player')">2 Player</button>
+<button onclick="loadCategory('action')">Action</button>
+<button onclick="loadCategory('arcade')">Arcade</button>
+<button onclick="loadCategory('sports')">Sports</button>
+<button onclick="loadCategory('puzzle')">Puzzle</button>
+</nav>
+
+<div id="game-container">
+<p>Select a category above to start playing!</p>
+</div>
+
+<script>
+const container = document.getElementById('game-container');
+
+// Game definitions
+const games = {
+  '2player': [
+    {name:'Pong', type:'custom', func:'pong'},
+    {name:'Tic Tac Toe', type:'custom', func:'ttt'},
+    {name:'Snake', type:'custom', func:'snake'},
+    {name:'Connect 4', type:'custom', func:'connect4'},
+    {name:'Rock Paper Scissors', type:'custom', func:'rps'},
+    {name:'Tank Duel', type:'custom', func:'tankduel'},
+    {name:'Air Hockey', type:'custom', func:'airhockey'}
+  ],
+  'action': [
+    {name:'Fireboy & Watergirl', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/fireboywatergirl/index.html'},
+    {name:'Run 3', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/run3/index.html'},
+    {name:'Shell Shockers', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/shellshockers/index.html'},
+    {name:'Slope', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/slope/index.html'},
+    {name:'Madalin Stunt Cars', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/madalinstuntcars/index.html'}
+  ],
+  'arcade': [
+    {name:'Basketball Stars', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/basketballstars/index.html'},
+    {name:'Tetris', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/tetris/index.html'},
+    {name:'Pacman', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/pacman/index.html'},
+    {name:'Bomberman', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/bomberman/index.html'}
+  ],
+  'sports': [
+    {name:'Football Legends', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/footballlegends/index.html'},
+    {name:'Soccer Skills', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/soccerskills/index.html'}
+  ],
+  'puzzle': [
+    {name:'Cut the Rope', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/cuttherope/index.html'},
+    {name:'2048', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/2048/index.html'},
+    {name:'Sudoku', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/sudoku/index.html'},
+    {name:'Mahjong', type:'iframe', src:'https://unblockedgames.s3.amazonaws.com/mahjong/index.html'}
+  ]
+};
+
+// Load a category
+function loadCategory(category){
+  container.innerHTML='';
+  const catGames = games[category];
+  catGames.forEach(g=>{
+    const btn = document.createElement('button');
+    btn.textContent = g.name;
+    btn.className='game-btn';
+    btn.onclick=()=>loadGame(g);
+    container.appendChild(btn);
+  });
+}
+
+// Load a game
+function loadGame(game){
+  container.innerHTML='';
+  if(game.type==='iframe'){
+    const iframe=document.createElement('iframe');
+    iframe.src=game.src;
+    container.appendChild(iframe);
+  } else if(game.type==='custom'){
+    const div = document.createElement('div');
+    div.className='custom-game';
+    container.appendChild(div);
+    window[game.func](div);
+  }
+}
+
+/* ---------- Custom 2-Player Games ---------- */
+
+// Pong
+function pong(container){ /* ...Pong JS code from previous template... */ }
+
+// Tic Tac Toe
+function ttt(container){ /* ...Tic Tac Toe JS code... */ }
+
+// Snake
+function snake(container){ /* ...Snake JS code... */ }
+
+// Connect 4
+function connect4(container){ /* ...Connect 4 JS code... */ }
+
+// Rock Paper Scissors
+function rps(container){ /* ...RPS JS code... */ }
+
+// Tank Duel
+function tankduel(container){ /* You can code a simple 2-player tank shooting game */ }
+
+// Air Hockey
+function airhockey(container){ /* Simple 2-player air hockey game */ }
+
+</script>
+
+</body>
+</html>
